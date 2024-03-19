@@ -72,6 +72,16 @@ const visionLocaleStrings = defineLocalesResources('vision', {
     'Perspectives allow your query to run against different "views" of the content in your dataset',
   /** Title for popover that explains what "Perspectives" are */
   'settings.perspectives.title': 'Perspectives',
+  /** Label for the button to toggle hide types */
+  'types.hide-types': 'Hide types',
+  /** Label for the button to toggle hide types */
+  'types.hide-types-button-label': 'Hides the generated query types pane',
+  /** Label for the generated query types pane */
+  'types.label': 'Types',
+  /** Label for the button to toggle show types */
+  'types.show-types': 'Show types',
+  /** Label for the button to toggle show types */
+  'types.show-types-button-label': 'Shows the generated query types pane',
 } as const)
 
 /**
