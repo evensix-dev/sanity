@@ -2,6 +2,7 @@ import {type ComponentType} from 'react'
 
 import {
   type ActiveToolLayoutProps,
+  type GlobalErrorBoundaryProps,
   type LayoutProps,
   type LogoProps,
   type NavbarProps,
@@ -38,5 +39,13 @@ export function pickActiveToolLayoutComponent(
 ): ComponentType<Omit<ActiveToolLayoutProps, 'renderDefault'>> {
   return plugin.studio?.components?.activeToolLayout as ComponentType<
     Omit<ActiveToolLayoutProps, 'renderDefault'>
+  >
+}
+
+export function pickGlobalErrorBoundaryComponent(
+  plugin: PluginOptions,
+): ComponentType<Omit<GlobalErrorBoundaryProps, 'renderDefault'>> {
+  return plugin.studio?.components?.globalErrorBoundary as ComponentType<
+    Omit<GlobalErrorBoundaryProps, 'renderDefault'>
   >
 }

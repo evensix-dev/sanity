@@ -2,12 +2,20 @@ import {type ComponentType, type ReactElement} from 'react'
 
 import {type Tool} from '../types'
 
+// Components
+
 /**
  * @hidden
  * @beta */
-// Components
 export interface LayoutProps {
   renderDefault: (props: LayoutProps) => ReactElement
+}
+
+/**
+ * @hidden
+ * @beta */
+export interface GlobalErrorBoundaryProps {
+  renderDefault: (props: GlobalErrorBoundaryProps) => ReactElement
 }
 
 /**
@@ -64,11 +72,13 @@ export interface ToolMenuProps {
   renderDefault: (props: ToolMenuProps) => ReactElement
 }
 
+// Config
+
 /**
  * @hidden
  * @beta */
-// Config
 export interface StudioComponents {
+  globalErrorBoundary: ComponentType<Omit<GlobalErrorBoundaryProps, 'renderDefault'>>
   layout: ComponentType<Omit<LayoutProps, 'renderDefault'>>
   logo: ComponentType<Omit<LogoProps, 'renderDefault'>>
   navbar: ComponentType<Omit<NavbarProps, 'renderDefault'>>
@@ -80,6 +90,7 @@ export interface StudioComponents {
  * @beta */
 export interface StudioComponentsPluginOptions {
   activeToolLayout?: ComponentType<ActiveToolLayoutProps>
+  globalErrorBoundary?: ComponentType<GlobalErrorBoundaryProps>
   layout?: ComponentType<LayoutProps>
   /**
    * @deprecated Add custom icons on a per-workspace basis by customizing workspace `icon` instead.

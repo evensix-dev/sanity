@@ -12,6 +12,7 @@ import {debugSecrets} from '@sanity/preview-url-secret/sanity-plugin-debug-secre
 import {tsdoc} from '@sanity/tsdoc/studio'
 import {visionTool} from '@sanity/vision'
 import {defineConfig, definePlugin, type WorkspaceOptions} from 'sanity'
+import type * as Sentry from '@sentry/react'
 import {presentationTool} from 'sanity/presentation'
 import {structureTool} from 'sanity/structure'
 import {muxInput} from 'sanity-plugin-mux-input'
@@ -56,6 +57,15 @@ import {workshopTool} from './workshop'
 
 const localePlugins = [koKRLocale(), nbNOLocale(), nnNOLocale(), ptPTLocale(), svSELocale()]
 
+const sentryPlugin = definePlugin<Sentry.BrowserOptions>((options) => ({
+  name: 'sentry',
+  studio: {
+    components: {
+      //layout: ({renderDefault}) => <Sentry.ErrorBoundary>
+    },
+  },
+}))
+
 const sharedSettings = definePlugin({
   name: 'sharedSettings',
   schema: {
@@ -99,6 +109,8 @@ const sharedSettings = definePlugin({
     badges: (prev, context) => (context.schemaType === 'author' ? [CustomBadge, ...prev] : prev),
   },
   plugins: [
+    sentryPlugin({}),
+
     structureTool({
       icon: BookIcon,
       structure,
