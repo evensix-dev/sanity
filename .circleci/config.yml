@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  gcp-cli: circleci/gcp-cli@3.1.1
+
 workflows:
   version: 2
   build-and-deploy:
@@ -14,8 +17,15 @@ jobs:
   build:
     docker:
       - image: cimg/node:20.12
+    environment:
+      TURBO_TOKEN: $TURBO_TOKEN
+      TURBO_TEAM: $TURBO_TEAM
     steps:
       - checkout
+      - gcloud/install
+      - gcloud/initialize:
+          gcloud-service-key: $GCLOUD_SERVICE_KEY
+          google-project-id: $GCLOUD_PROJECT_ID
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
@@ -38,6 +48,6 @@ jobs:
       - run:
           name: Build bundle
           command: pnpm run build:bundle
-    environment:
-      TURBO_TOKEN: $TURBO_TOKEN
-      TURBO_TEAM: $TURBO_TEAM
+      - run:
+          name: List Bucket
+          command: gcloud storage ls $GCLOUD_BUCKET
