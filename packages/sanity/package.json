@@ -2,13 +2,7 @@
   "name": "sanity",
   "version": "3.39.1",
   "description": "Sanity is a real-time content infrastructure with a scalable, hosted backend featuring a Graph Oriented Query Language (GROQ), asset pipelines and fast edge caches",
-  "keywords": [
-    "sanity",
-    "cms",
-    "headless",
-    "realtime",
-    "content"
-  ],
+  "keywords": ["sanity", "cms", "headless", "realtime", "content"],
   "homepage": "https://www.sanity.io/",
   "bugs": {
     "url": "https://github.com/sanity-io/sanity/issues"
@@ -74,27 +68,14 @@
   "types": "./lib/index.d.ts",
   "typesVersions": {
     "*": {
-      "_internal": [
-        "./lib/_internal.d.ts"
-      ],
-      "cli": [
-        "./lib/cli.d.ts"
-      ],
-      "desk": [
-        "./lib/desk.d.ts"
-      ],
-      "migrate": [
-        "./lib/migrate.d.ts"
-      ],
-      "presentation": [
-        "./lib/presentation.d.ts"
-      ],
-      "router": [
-        "./lib/router.d.ts"
-      ],
-      "structure": [
-        "./lib/structure.d.ts"
-      ]
+      "_internal": ["./lib/_internal.d.ts"],
+      "_internalBrowser": ["./lib/_internalBrowser.d.ts"],
+      "cli": ["./lib/cli.d.ts"],
+      "desk": ["./lib/desk.d.ts"],
+      "migrate": ["./lib/migrate.d.ts"],
+      "presentation": ["./lib/presentation.d.ts"],
+      "router": ["./lib/router.d.ts"],
+      "structure": ["./lib/structure.d.ts"]
     }
   },
   "bin": {
@@ -147,6 +128,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/import": "^3.37.3",
     "@sanity/logos": "^2.1.4",
+    "@sanity/manifest": "3.39.1",
     "@sanity/migrate": "3.39.1",
     "@sanity/mutator": "3.39.1",
     "@sanity/portable-text-editor": "3.39.1",

@@ -62,3 +62,6 @@
 /packages/@sanity/cli/src/actions/typegen @sanity-io/content-lake-dx
 /packages/@sanity/cli/src/commands/typegen @sanity-io/content-lake-dx
 /packages/@sanity/cli/src/workers/typegenGenerate.ts @sanity-io/content-lake-dx
+
+# -- Manifest --
+/packages/@sanity/manifest @sanity-io/studio-dx
