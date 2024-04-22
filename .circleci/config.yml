@@ -47,4 +47,4 @@ jobs:
           command: pnpm run build:bundle
       - run:
           name: List Bucket
-          command: gcloud storage ls $GCLOUD_BUCKET
+          command: gcloud compute backend-buckets describe $GCLOUD_BUCKET
