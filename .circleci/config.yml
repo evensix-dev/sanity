@@ -22,9 +22,7 @@ jobs:
       TURBO_TEAM: $TURBO_TEAM
     steps:
       - checkout
-      - gcloud/setup:
-          gcloud-service-key: $GCLOUD_SERVICE_KEY
-          google-project-id: $GCLOUD_PROJECT_ID
+      - gcloud/setup
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
