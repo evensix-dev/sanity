@@ -38,3 +38,6 @@ jobs:
       - run:
           name: Build bundle
           command: pnpm run build:bundle
+    environment:
+      TURBO_TOKEN: $TURBO_TOKEN
+      TURBO_TEAM: $TURBO_TEAM
