@@ -46,5 +46,5 @@ jobs:
           name: Build bundle
           command: pnpm run build:bundle
       - run:
-          name: List Bucket
-          command: gcloud compute backend-buckets describe $GCLOUD_BUCKET
+          name: Copy to bucket
+          command: gcloud storage rsync ./packages/sanity/dist $GCLOUD_BUCKET/sanity-v3 --recursive
