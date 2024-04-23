@@ -24,7 +24,8 @@ jobs:
       - checkout
       - run:
           command: |
-            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+            sudo apt-get update
+            sudo apt-get install -y jq
       - gcloud/setup
       - restore_cache:
           name: Restore pnpm Package Cache
@@ -50,4 +51,6 @@ jobs:
           command: pnpm run build:bundle
       - run:
           name: Copy to bucket
-          command: gcloud storage rsync ./packages/sanity/dist $GCLOUD_BUCKET/sanity-v3 --recursive
+          command: |
+            sanity_version=$(cat packages/sanity/package.json | jq -r .version)
+            gcloud storage rsync ./packages/sanity/dist $GCLOUD_BUCKET/sanity/$sanity_version --recursive
