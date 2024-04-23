@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo "$GCLOUD_SERVICE_KEY" | base64 --decode > "$HOME"/gcloud-service-key.json
+          command: echo -n "$GCLOUD_SERVICE_KEY" | base64 --decode > "$HOME"/gcloud-service-key.json
       - gcloud/setup
       - restore_cache:
           name: Restore pnpm Package Cache
