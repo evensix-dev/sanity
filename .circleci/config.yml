@@ -17,9 +17,6 @@ jobs:
   build:
     docker:
       - image: cimg/node:20.12
-    environment:
-      TURBO_TOKEN: $TURBO_TOKEN
-      TURBO_TEAM: $TURBO_TEAM
     steps:
       - checkout
       - run:
