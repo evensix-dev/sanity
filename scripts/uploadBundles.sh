@@ -26,6 +26,7 @@ for dir in "${dir_paths[@]}"; do
   # gcloud storage rsync packages/$dir/dist $GCLOUD_BUCKET/$cleanDir/$version --recursive --content-type=application/javascript || echo "Failed to copy files from $dir"
 
   echo "Completed copy for directory $dir"
+  echo ""
 done
 
 echo "All directories processed."
