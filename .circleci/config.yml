@@ -48,6 +48,4 @@ jobs:
           command: pnpm run build:bundle
       - run:
           name: Copy to bucket
-          command: |
-            sanity_version=$(cat packages/sanity/package.json | jq -r .version)
-            gcloud storage rsync ./packages/sanity/dist $GCLOUD_BUCKET/sanity/$sanity_version --recursive --content-type=application/javascript
+          command: bash ./scripts/uploadBundles.sh
