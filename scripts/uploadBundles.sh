@@ -22,7 +22,7 @@ for dir in "${dir_paths[@]}"; do
   # Convert slashes to double underscores
   cleanDir=$(echo $dir | sed 's/\//__/g')
 
-  echo "gcloud storage rsync packages/$dir/dist $GCLOUD_BUCKET/$cleanDir/$version --recursive --content-type=application/javascript"
+  echo "gcloud storage rsync packages/$dir/dist $GCLOUD_BUCKET/modules/$cleanDir/$version --recursive --content-type=application/javascript"
   # gcloud storage rsync packages/$dir/dist $GCLOUD_BUCKET/$cleanDir/$version --recursive --content-type=application/javascript || echo "Failed to copy files from $dir"
 
   echo "Completed copy for directory $dir"
