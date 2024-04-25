@@ -6,6 +6,7 @@ export default defineConfig(() => {
   return mergeConfig(defaultConfig, {
     build: {
       lib: {
+        // NOTE: IF ANY OF THIS CHANGES MAKE SURE TO UPDATE `scripts/uploadBundles.sh`
         entry: {
           'react': './node_modules/react/cjs/react.production.min.js',
           'react-dom': './node_modules/react-dom/cjs/react-dom.production.min.js',
