@@ -22,7 +22,7 @@ for dir in "${dir_paths[@]}"; do
 
   # Get the version from the package.json file
   # TODO: use sha for next
-  version=$(cat packages/$dir/package.json | jq -r .version)
+  version=$(jq -r .version "packages/$dir/package.json")
 
   # Convert slashes to double underscores
   cleanDir=$(echo $dir | sed 's/\//__/g')
@@ -48,7 +48,7 @@ copy_shared_dependencies() {
   # Join package names into a string with paths
   local joined_paths=$(printf "packages/@repo/shared-modules.bundle/dist/%s.mjs " "${files[@]}" | sed 's/,$//')
 
-  gcloud storage cp $joined_paths $GCLOUD_BUCKET/modules/$appVersion/$package_name/$version/bare --recursive --content-type=application/javascript | echo "Failed to copy files from $package_name"
+  gcloud storage cp $joined_paths $GCLOUD_BUCKET/modules/$appVersion/$package_name/$version/bare --content-type=application/javascript | echo "Failed to copy files from $package_name"
 
   echo "Completed copying $package_name packages"
   echo ""
