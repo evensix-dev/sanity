@@ -45,11 +45,15 @@ copy_shared_dependencies() {
   # Get the version from the package's package.json file
   local version=$(jq -r .version "packages/@repo/shared-modules.bundle/node_modules/$package_name/package.json")
 
-  # Join package names into a string with paths
-  local joined_paths=$(printf "packages/@repo/shared-modules.bundle/dist/%s.mjs " "${files[@]}" | sed 's/,$//')
+  # If there is only one file than use the file name in the path
+  if [ ${#files[@]} -eq 1 ]; then
+    gcloud storage cp packages/@repo/shared-modules.bundle/dist/${files[0]}.mjs $GCLOUD_BUCKET/modules/$appVersion/$package_name/$version/bare/${files[0]}.mjs --content-type=application/javascript | echo "Failed to copy files from $package_name"
+  else
+    # Join package names into a string with paths
+    local joined_paths=$(printf "packages/@repo/shared-modules.bundle/dist/%s.mjs " "${files[@]}" | sed 's/,$//')
 
-  gcloud storage cp $joined_paths $GCLOUD_BUCKET/modules/$appVersion/$package_name/$version/bare --content-type=application/javascript | echo "Failed to copy files from $package_name"
-
+    gcloud storage cp $joined_paths $GCLOUD_BUCKET/modules/$appVersion/$package_name/$version/bare --content-type=application/javascript | echo "Failed to copy files from $package_name"
+  fi
   echo "Completed copying $package_name packages"
   echo ""
 }
