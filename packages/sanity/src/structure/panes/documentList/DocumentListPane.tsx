@@ -13,6 +13,7 @@ import {
   useTranslation,
   useUnique,
 } from 'sanity'
+import {useRouter} from 'sanity/router'
 import shallowEquals from 'shallow-equals'
 import {keyframes, styled} from 'styled-components'
 
@@ -91,6 +92,7 @@ export const DocumentListPane = memo(function DocumentListPane(props: DocumentLi
   const schema = useSchema()
   const {name: parentSourceName} = useSource()
 
+  const perspective = useRouter().stickyParams.perspective
   const {
     defaultLayout = 'default',
     displayOptions,
@@ -157,6 +159,7 @@ export const DocumentListPane = memo(function DocumentListPane(props: DocumentLi
   } = useDocumentList({
     apiVersion,
     filter,
+    perspective,
     params,
     searchQuery: searchQuery?.trim(),
     sortOrder,

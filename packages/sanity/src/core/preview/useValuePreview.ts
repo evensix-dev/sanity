@@ -27,20 +27,24 @@ function useDocumentPreview(props: {
   enabled?: boolean
   ordering?: SortOrdering
   schemaType?: SchemaType
+  perspective?: string
   value: unknown | undefined
 }): State {
-  const {enabled = true, ordering, schemaType, value: previewValue} = props || {}
+  const {enabled = true, perspective, ordering, schemaType, value: previewValue} = props || {}
   const {observeForPreview} = useDocumentPreviewStore()
   return useMemoObservable<State>(
     () => {
       if (!enabled || !previewValue || !schemaType) return of(PENDING_STATE)
 
-      return observeForPreview(previewValue as Previewable, schemaType, {ordering}).pipe(
+      return observeForPreview(previewValue as Previewable, schemaType, {
+        perspective,
+        viewOptions: {ordering: ordering},
+      }).pipe(
         map((event) => ({isLoading: false, value: event.snapshot || undefined})),
         catchError((error) => of({isLoading: false, error})),
       )
     },
-    [enabled, observeForPreview, ordering, schemaType, previewValue],
+    [enabled, previewValue, schemaType, observeForPreview, perspective, ordering],
     INITIAL_STATE,
   )
 }
