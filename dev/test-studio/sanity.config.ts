@@ -149,6 +149,9 @@ export default defineConfig([
     plugins: [sharedSettings()],
     basePath: '/test',
     icon: SanityMonogram,
+    search: {
+      enableLegacySearch: true,
+    },
     unstable_serverActions: {
       enabled: true,
     },
